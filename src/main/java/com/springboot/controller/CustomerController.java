@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springboot.entity.Customer;
@@ -21,7 +20,7 @@ public class CustomerController {
 
 	@RequestMapping("/ShowCustomers")
 	public ModelAndView showCustomers() {
-		ModelAndView mav = new ModelAndView("showcustomers");
+		ModelAndView mav = new ModelAndView("show_customers");
 		mav.addObject("customersList", customerService.findAll());
 		return mav;
 	}
@@ -29,13 +28,13 @@ public class CustomerController {
 	@RequestMapping("/InsertCustomer")
 	public String insertCustomers(Model model) {
 		model.addAttribute("customer", new Customer());
-		return "insertcustomer";
+		return "insert_customer";
 	}
 	
 	@PostMapping("/CustomerForm")
 	public ModelAndView insertCustomers(@ModelAttribute Customer customer) {
 		customerService.insertOrUpdate(customer);
-		ModelAndView mav = new ModelAndView("insertsuccess");
+		ModelAndView mav = new ModelAndView("insert_success");
 		mav.addObject("customer", customer);
 		return mav;
 	}
