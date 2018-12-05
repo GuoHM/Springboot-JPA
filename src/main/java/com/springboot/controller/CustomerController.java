@@ -1,0 +1,43 @@
+package com.springboot.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.springboot.entity.Customer;
+import com.springboot.service.CustomerService;
+
+@Controller
+@RequestMapping(value = "/CustomersJPA")
+public class CustomerController {
+
+	@Autowired
+	CustomerService customerService;
+
+	@RequestMapping("/ShowCustomers")
+	public ModelAndView showCustomers() {
+		ModelAndView mav = new ModelAndView("showcustomers");
+		mav.addObject("customersList", customerService.findAll());
+		return mav;
+	}
+	
+	@RequestMapping("/InsertCustomer")
+	public String insertCustomers(Model model) {
+		model.addAttribute("customer", new Customer());
+		return "insertcustomer";
+	}
+	
+	@PostMapping("/CustomerForm")
+	public ModelAndView insertCustomers(@ModelAttribute Customer customer) {
+		customerService.insertOrUpdate(customer);
+		ModelAndView mav = new ModelAndView("insertsuccess");
+		mav.addObject("customer", customer);
+		return mav;
+	}
+
+}
