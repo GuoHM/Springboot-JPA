@@ -1,5 +1,4 @@
-`
-<!DOCTYPE>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: head"></head>
 <body>
@@ -34,15 +33,32 @@
 				</div>
 			</form>
 
+			<input type="submit" value="list all" class="btn btn-default" id="btnListCustomer">
+			<div id="toolbar" style="visibility: hidden;">
+				<div class="form-inline" role="form">
+					<div class="form-group">
+						<span>Offset: </span>
+						<input name="offset" class="form-control w70" type="number" value="0">
+					</div>
+					<div class="form-group">
+						<span>Limit: </span>
+						<input name="limit" class="form-control w70" type="number" value="5">
+					</div>					
+					<button id="ok" type="submit" class="btn btn-default">OK</button>
+				</div>
+			</div>
+
+			<table class="table" id="customers-table"></table>
+
 			<div th:replace="fragments/footer::footer"></div>
 			<script type="text/javascript" th:src="@{/js/bootstrapValidator.min.js}"></script>
 			<script type="text/javascript" th:src="@{/js/validator/customer-validator.js}"></script>
-			
+			<script type="text/javascript" th:src="@{/js/bootstrap-table.js}"></script>
+			<script type="text/javascript" th:src="@{/js/tables/show-customers.js}"></script>
+			<script type="text/javascript" th:src="@{/js/bootstrap-table-export.js}"></script>
+			<script src="//rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
 		</div>
 	</div>
-</body>
-
-
 </body>
 
 </html>

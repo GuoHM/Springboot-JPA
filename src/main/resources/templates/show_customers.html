@@ -4,18 +4,7 @@
 <body>
 	<div class="container">
 		<div th:replace="fragments/navigationbar :: navigationbar"></div>
-
-		<h1>hahahaha</h1>
-		<table>
-			<tr>
-				<th>hsakjh</th>
-
-			</tr>
-			<tr th:each="customer:${customersList}">
-				<td th:text="${customer.customerid}"></td>
-
-			</tr>
-		</table>
+		
 	</div>
 	<div th:replace="fragments/footer::footer"></div>
 </body>

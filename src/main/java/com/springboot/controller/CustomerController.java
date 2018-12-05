@@ -1,11 +1,14 @@
 package com.springboot.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springboot.entity.Customer;
@@ -38,5 +41,12 @@ public class CustomerController {
 		mav.addObject("customer", customer);
 		return mav;
 	}
+	
+	@RequestMapping("/api/lsitCustomers")
+	@ResponseBody
+	public List<Customer> listCustomers() {
+		return customerService.findAll();
+	}
+	
 
 }
