@@ -9,6 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "Customers")
+@Cacheable
 @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c")
 public class Customer implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -126,5 +127,13 @@ public class Customer implements Serializable {
 	public void setRegion(String region) {
 		this.region = region;
 	}
+
+	@Override
+	public String toString() {
+		return "Customer [customerID=" + customerID + ", address=" + address + ", city=" + city + ", companyName=" + companyName + ", contactName=" + contactName + ", contactTitle=" + contactTitle
+				+ ", country=" + country + ", fax=" + fax + ", phone=" + phone + ", postalCode=" + postalCode + ", region=" + region + "]";
+	}
+
+
 
 }

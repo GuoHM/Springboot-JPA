@@ -3,6 +3,7 @@ package com.springboot.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.springboot.dao.CustomerDao;
@@ -11,17 +12,19 @@ import com.springboot.service.CustomerService;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
-	
+
 	@Autowired
-    CustomerDao customerDao;
+	CustomerDao customerDao;
 
 	@Override
+	@Cacheable(value = "customers", key = "'findAll()'")
 	public List<Customer> findAll() {
 		// TODO Auto-generated method stub
 		return customerDao.findAll();
 	}
 
 	@Override
+	@Cacheable(value = "customers", key = "#root.methodName+'_'+#id")
 	public Customer findById(String id) {
 		// TODO Auto-generated method stub
 		return customerDao.findOne(id);
@@ -36,8 +39,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void delete(String id) {
 		// TODO Auto-generated method stub
-		customerDao.delete(id);;
+		customerDao.delete(id);
 	}
-
 
 }

@@ -1,5 +1,6 @@
 package com.springboot.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +46,9 @@ public class CustomerController {
 	@RequestMapping("/api/lsitCustomers")
 	@ResponseBody
 	public List<Customer> listCustomers() {
-		return customerService.findAll();
+		List<Customer> result = new ArrayList<Customer>();
+		result.add(customerService.findById("ABC"));
+		return result;
 	}
 	
 
