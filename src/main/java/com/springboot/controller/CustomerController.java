@@ -1,6 +1,5 @@
 package com.springboot.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +27,13 @@ public class CustomerController {
 		mav.addObject("customersList", customerService.findAll());
 		return mav;
 	}
-	
+
 	@RequestMapping("/InsertCustomer")
 	public String insertCustomers(Model model) {
 		model.addAttribute("customer", new Customer());
 		return "insert_customer";
 	}
-	
+
 	@PostMapping("/CustomerForm")
 	public ModelAndView insertCustomers(@ModelAttribute Customer customer) {
 		customerService.insertOrUpdate(customer);
@@ -42,14 +41,11 @@ public class CustomerController {
 		mav.addObject("customer", customer);
 		return mav;
 	}
-	
+
 	@RequestMapping("/api/lsitCustomers")
 	@ResponseBody
 	public List<Customer> listCustomers() {
-		List<Customer> result = new ArrayList<Customer>();
-		result.add(customerService.findById("ABC"));
-		return result;
+		return customerService.findAll();
 	}
-	
 
 }
