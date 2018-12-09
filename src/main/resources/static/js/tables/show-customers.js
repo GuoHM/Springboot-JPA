@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
-
+	var oTableInit = new TableInit();
+	oTableInit.Init();
 
 	var oButtonInit = new ButtonInit();
 	oButtonInit.Init();
@@ -36,15 +37,14 @@ var TableInit = function() {
 			cardView : false, // 是否显示详细视图
 			detailView : false, // 是否显示父子表
 			showExport: true,                     //是否显示导出
-            exportDataType: "basic",              //basic', 'all', 'selected'.
+			exportDataType: "basic",              //basic', 'all', 'selected'.
+			showColumns : true,
 			columns : [ {
-
 				align : "center",
 				title : 'customerID',
 				sortable : true,
 				field : 'customerID'
 			},{
-
 				align : "center",
 				title : 'contactName',
 				visible : true,
@@ -56,14 +56,19 @@ var TableInit = function() {
 				visible : true,
 				sortable : true,
 				field : 'companyName'
-
-			}, {
-
+			},{
 				align : "center",
 				title : 'city',
 				visible : true,
 				sortable : true,
 				field : 'city'
+			},{
+				align : "center",
+				title : 'option',
+				visible : true,
+				sortable : false,
+				events: operateEvents,
+				formatter: operateFormatter
 			}],
 			formatLoadingMessage : function() {
 				// 正在加载
@@ -80,6 +85,29 @@ var TableInit = function() {
 		};
 		return temp;
 	};
+
+	function operateFormatter(value, row, index) {
+		return [
+		        '<a class="like" href="javascript:void(0)" title="Like">',
+		        '<span class="glyphicon glyphicon-cog"></span>',
+		        '</a>',
+		        '<a class="remove" href="javascript:void(0)" title="Remove">',
+		        '<span class="glyphicon glyphicon-remove"></span>',
+		        '</a>'
+		        ].join('');
+	}
+	operateEvents = {
+			'click .like': function (e, value, row, index) {
+				$("#editEmployeeModal").modal('show');
+				$("#customerIDEdit").val(row.customerID);
+				$("#companyNameEdit").val(row.companyName);
+			},
+			'click .remove': function (e, value, row, index) {
+				$("#deleteEmployeeModal").modal('show');
+				var url = 'delete?customerID=' + row.customerID;
+				$("#deleteForm").attr('action',url);
+			}
+	};
 	return oTableInit;
 };
 
@@ -95,6 +123,8 @@ var ButtonInit = function() {
 			oTable.Init();
 			$("#toolbar").css("visibility", "visible");
 		})
+
+
 	};
 
 	return oInit;
