@@ -11,6 +11,8 @@ public interface CustomerService {
 	
 	public Customer findById(String id);
 	
+	public Customer findByIdandContactName(String id, String contactName);
+	
 	public Customer insertOrUpdate(Customer customer);
 	
 	public void delete(String id);

@@ -42,4 +42,10 @@ public class CustomerServiceImpl implements CustomerService {
 		customerDao.delete(id);
 	}
 
+	@Override
+	public Customer findByIdandContactName(String id, String contactName) {
+		// TODO Auto-generated method stub
+		return customerDao.findByCustomerIDAndContactName(id, contactName);
+	}
+
 }
