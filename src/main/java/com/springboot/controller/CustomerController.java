@@ -81,7 +81,7 @@ public class CustomerController {
 		return customerService.findAll();
 	}
 	//this is a test for guohaoming123
-	//this is a test in github123
+	//this is a test in github
 	//this is a test
 
 
