@@ -80,6 +80,6 @@ public class CustomerController {
 	public List<Customer> listCustomers() {
 		return customerService.findAll();
 	}
-	//this is a test for guohaoming
+	//this is a test in github
 
 }
