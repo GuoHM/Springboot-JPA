@@ -128,24 +128,24 @@ var ButtonInit = function() {
 		}),
 
 		$('#saveChange').click(function() {
-			var selectRows = $("#customers-table").bootstrapTable('getSelections');
-			var url=;
-			for (){
-				url+=;
-			}
-			set form attr
-			alert(selectRows[0].customerID);
-			$.ajax({
-				url: '/CustomersJPA/dba',
-				type: 'post',
-				dataType: "html",
-				data: {},
-				success: function (response) {
-					alert(1111);
-				}
-			});
+			//var selectRows = $("#customers-table").bootstrapTable('getSelections');
+			var url="AAAAA?";
+			var selected = $('#customers-table').bootstrapTable('getSelections');
+			$.each(selected, function(i, item){    
+				url+=item.customerID+"&";  
+			}); 
+			 alert(url);
+//			$.ajax({
+//			url: '/CustomersJPA/dba',
+//			type: 'post',
+//			dataType: "html",
+//			data: {},
+//			success: function (response) {
+//			alert(1111);
+//			}
+//			});
 		});
-		
+
 //		$.get("test.cgi", { name: "John", time: "2pm" },
 //		function(data){
 //		alert("Data Loaded: " + data);
@@ -156,5 +156,5 @@ var ButtonInit = function() {
 
 
 
-return oInit;
+	return oInit;
 };
