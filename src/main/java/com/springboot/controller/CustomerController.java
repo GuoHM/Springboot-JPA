@@ -26,11 +26,16 @@ public class CustomerController {
 
 	@Autowired
 	CustomerService customerService;
+	
+	@ModelAttribute
+	public void setCustomer(Model model) {
+		model.addAttribute("customer",new Customer());
+	}
 
 	@PostMapping("/ShowCustomers")
 	public ModelAndView showCustomers() {
 		ModelAndView mav = new ModelAndView("insert_customer");
-		mav.addObject("customer", new Customer());
+		//mav.addObject("customer", new Customer());
 		return mav;
 	}
 

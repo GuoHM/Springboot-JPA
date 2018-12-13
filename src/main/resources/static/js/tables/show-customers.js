@@ -39,7 +39,10 @@ var TableInit = function() {
 			showExport: true,                     //是否显示导出
 			exportDataType: "basic",              //basic', 'all', 'selected'.
 			showColumns : true,
+			clickToSelect: true,
 			columns : [ {
+				checkbox: true  
+			},{
 				align : "center",
 				title : 'customerID',
 				sortable : true,
@@ -122,10 +125,36 @@ var ButtonInit = function() {
 			var oTable = new TableInit();
 			oTable.Init();
 			$("#toolbar").css("visibility", "visible");
-		})
+		}),
+
+		$('#saveChange').click(function() {
+			var selectRows = $("#customers-table").bootstrapTable('getSelections');
+			var url=;
+			for (){
+				url+=;
+			}
+			set form attr
+			alert(selectRows[0].customerID);
+			$.ajax({
+				url: '/CustomersJPA/dba',
+				type: 'post',
+				dataType: "html",
+				data: {},
+				success: function (response) {
+					alert(1111);
+				}
+			});
+		});
+		
+//		$.get("test.cgi", { name: "John", time: "2pm" },
+//		function(data){
+//		alert("Data Loaded: " + data);
+//		}); 
+		//alert(JSON.stringify(getSelectRows));	
+	}
 
 
-	};
 
-	return oInit;
+
+return oInit;
 };

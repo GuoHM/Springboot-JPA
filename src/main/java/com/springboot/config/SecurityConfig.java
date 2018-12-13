@@ -48,6 +48,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .defaultSuccessUrl("/CustomersJPA/InsertCustomer").failureUrl("/CustomersJPA/login?error")
       .usernameParameter("userid").passwordParameter("password")
   .and()
+      .exceptionHandling().accessDeniedPage("/error")
+      .and()
       .csrf().disable();
   }
   
