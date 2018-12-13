@@ -132,9 +132,24 @@ var ButtonInit = function() {
 			var url="AAAAA?";
 			var selected = $('#customers-table').bootstrapTable('getSelections');
 			$.each(selected, function(i, item){    
-				url+=item.customerID+"&";  
+				url+="userid="+item.customerID+"&";  
 			}); 
-			 alert(url);
+			url = url.replace(" ", "");
+			url = url.substr(0, url.length - 1);  
+			alert(url);
+			$.ajax({
+                cache: true,
+                type: "POST",
+                url:url,
+                async: false,
+                error: function(request) {
+                    alert(url+"      error");
+                },
+                success: function(data) {
+                	alert(url+"      success");
+                }
+            });
+			
 //			$.ajax({
 //			url: '/CustomersJPA/dba',
 //			type: 'post',
